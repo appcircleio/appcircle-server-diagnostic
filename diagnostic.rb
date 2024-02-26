@@ -13,6 +13,8 @@ file_size = ENV["AC_DIAGNOSTIC_UPLOAD_FILE_SIZE_MB"].to_i
 file_path = "#{upload_dir}/diagnostic_file.txt"
 time_out_in_minutes = ENV["AC_DIAGNOSTIC_SERVER_TIMEOUT_MINUTES"].to_i
 
+$stdout.sync = true
+
 if file_size > 2048
   puts "File size is too large. Please provide a file size less than 2048 MB."
   exit
@@ -68,7 +70,7 @@ def diagnose_file_upload(upload_url, file_size, file_path)
   rescue => e
     puts "Error: #{e.message}"
   end
-  
+
   ## delete the file after upload
   File.delete(file_path)
 end
