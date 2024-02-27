@@ -64,8 +64,8 @@ def diagnose_file_upload(upload_url, file_size, file_path)
       raise "Upload failed."
     end
     end_time = Time.now
-    upload_speed = file_size.to_f / (end_time - start_time) / 1024 / 1024
-    puts "Upload speed: #{upload_speed.round(5)} MB/s"
+    upload_speed = file_size.to_f / (end_time - start_time)
+    puts "Upload speed: #{upload_speed.round(3)} MB/s"
   rescue => e
     puts "Error: #{e.message}"
   end
