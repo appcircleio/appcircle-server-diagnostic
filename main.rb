@@ -4,13 +4,12 @@ require "net/http"
 require 'fileutils'
 require 'securerandom'
 
-upload_dir = ENV["AC_UPLOAD_DIR"]
 upload_file_chunk_url = ENV["AC_UPLOADCHUNK_URL"]
 
 upload_url = URI(upload_file_chunk_url.gsub("uploadFileChunk", "testFileUpload"))
 time_out_check_url = URI(upload_file_chunk_url.gsub("uploadFileChunk", "testServerTimeout"))
 file_size = ENV["AC_DIAGNOSTIC_UPLOAD_FILE_SIZE_MB"].to_i
-file_path = "#{upload_dir}/diagnostic_file.txt"
+file_path = "/tmp/diagnostic_file_#{SecureRandom.hex(4)}.txt"
 time_out_in_minutes = ENV["AC_DIAGNOSTIC_SERVER_TIMEOUT_MINUTES"].to_i
 
 $stdout.sync = true
