@@ -1,7 +1,7 @@
 
 # Appcircle _Server Diagnostic_ Component
 
-You can use the Server Diagnostic component for diagnosing the upload speed and server timeout for Appcircle server and runner communication. It is only available in **self-hosted** deployments.
+You can use the Server Diagnostic component to diagnose the upload speed and server timeout for Appcircle server and runner communication. It is only available in **self-hosted** deployments.
 
 It performs the following steps:
 
