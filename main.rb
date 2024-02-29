@@ -21,7 +21,7 @@ end
 if file_size < 1
   puts "File size is incorrect. Please provide a file size between 1-2048 MB."
   exit
-end 
+end
 
 def create_diagnostic_file(file_path, file_size)
   begin
@@ -41,6 +41,7 @@ def create_diagnostic_file(file_path, file_size)
     puts "Error creating diagnostic file: #{e.message}"
   end
 end
+
 def diagnose_file_upload(upload_url, file_size, file_path)
 
   begin 
@@ -52,10 +53,10 @@ def diagnose_file_upload(upload_url, file_size, file_path)
     form_data = [['fileSize', (file_size * 1024 * 1024).to_s],
                  ['filename', 'diagnostic_file.txt'],
                  ['fileContent', File.open(file_path)]]
-  
+
     request.set_form form_data, 'multipart/form-data'
     start_time = Time.now
-  
+
     puts "  uploading... {file_name: #{file_path}, file_size: #{file_size}MB}"
     response = http.request(request)
     unless response.is_a?(Net::HTTPSuccess)
@@ -88,7 +89,7 @@ def test_server_time_out(time_out_check_url, time_out_in_minutes)
   unless response.is_a?(Net::HTTPSuccess)
     puts "Error code from server: #{response.code}"
     puts response.body
-    raise "Server time out test failed."
+    raise "Server timeout test failed."
   end
   if response.is_a?(Net::HTTPSuccess)
     puts "Server timeout test is OK."
@@ -99,6 +100,5 @@ puts "Creating diagnostic file..."
 create_diagnostic_file(file_path, file_size)
 puts "Diagnosing file upload..."
 diagnose_file_upload(upload_url, file_size, file_path)
-puts "Testing server time out..."
+puts "Testing server timeout..."
 test_server_time_out(time_out_check_url, time_out_in_minutes)
- 
